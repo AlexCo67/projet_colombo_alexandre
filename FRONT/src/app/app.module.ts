@@ -20,6 +20,12 @@ const appRoutes: Routes = [
       import('./modules/gestionProduits/gestionProduits.module').then((m) => m.GestionProduitsModule),
   },
 
+  {
+    path: 'gestionClients',
+    loadChildren: () =>
+      import('./modules/gestionClients/gestionClients.module').then((m) => m.GestionClientsModule),
+  },
+
 
 ];
 
@@ -28,7 +34,7 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     LiensComponent
-    
+
   ],
   imports: [
     BrowserModule,

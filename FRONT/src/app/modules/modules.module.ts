@@ -36,7 +36,7 @@ const appChild: Routes = [
 
   declarations: [
     AccueilClientComponent,
-    AccueilProduitComponent
+    AccueilProduitComponent,
   ],
 })
 export class ModulesModule {}

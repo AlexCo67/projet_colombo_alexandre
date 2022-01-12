@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-//import { NgxsModule } from '@ngxs/store';
+import { NgxsModule } from '@ngxs/store';
+import { ClientState } from './shared/states/client-state';
 
 import { AppComponent } from './app.component';
 import { LiensComponent } from './liens/liens.component';
@@ -39,6 +40,7 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes),
+    NgxsModule.forRoot([ClientState])
   ],
   providers: [],
   bootstrap: [AppComponent]

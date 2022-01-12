@@ -8,6 +8,7 @@ import { FormulaireClientComponent } from './formulaire-client/formulaire-client
 
 
 
+
 const appChild: Routes = [
 
   {
@@ -38,7 +39,7 @@ const appChild: Routes = [
 
   declarations: [
     DetailClientComponent,
-    FormulaireClientComponent
+    FormulaireClientComponent,
   ],
 })
 export class GestionClientsModule {}

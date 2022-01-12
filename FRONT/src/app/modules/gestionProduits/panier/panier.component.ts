@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Select } from '@ngxs/store';
+import { Observable } from 'rxjs/internal/Observable';
+import { Produit } from 'src/app/shared/models/produit';
+import { ProduitState } from 'src/app/shared/states/produit-state';
+import { Store } from '@ngxs/store';
+import { DelProduit } from 'src/app/shared/actions/produit-actions';
 
 @Component({
   selector: 'app-panier',
@@ -7,9 +13,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PanierComponent implements OnInit {
 
-  constructor() { }
+  constructor(private store: Store) { }
+
+  supprimerProduitPanier(c:Produit){
+    console.log("produit supprimé" + c.nom);
+    this.store.dispatch(new DelProduit(c));
+  }
+
 
   ngOnInit(): void {
   }
 
+  @Select(ProduitState.getListeProduits)
+  liste$!: Observable<Produit[]>;
 }

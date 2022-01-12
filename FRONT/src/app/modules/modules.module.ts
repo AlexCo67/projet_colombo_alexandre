@@ -5,6 +5,9 @@ import { CommonModule } from '@angular/common';
 import { AccueilClientComponent } from './gestionClients/accueil-client/accueil-client.component';
 import { AccueilProduitComponent } from './gestionProduits/accueil-produit/accueil-produit.component';
 import { AccueilComponent } from './accueil/accueil.component';
+import { NgxsModule } from '@ngxs/store';
+import { ClientState } from '../shared/states/client-state';
+import { ProduitState } from '../shared/states/produit-state';
 
 
 const appChild: Routes = [
@@ -31,7 +34,8 @@ const appChild: Routes = [
     CommonModule,
     RouterModule.forChild(appChild),
     ReactiveFormsModule,
-    //NgxsModule.forFeature([ProduitState]),
+//    NgxsModule.forRoot([ClientState]),
+//    NgxsModule.forRoot([ProduitState]),
   ],
 
   declarations: [

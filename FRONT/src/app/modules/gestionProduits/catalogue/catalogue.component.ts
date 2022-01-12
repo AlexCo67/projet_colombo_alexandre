@@ -20,8 +20,8 @@ export class CatalogueComponent implements OnInit {
   catalogue?: Observable<Array<Produit>>;
 
   ajouterProduitPanier(c:Produit){
-    console.log("produit ajouté " + c.nom);
     this.store.dispatch(new AddProduit(c));
+    console.log("produit ajouté " + c.nom);
   }
 
 

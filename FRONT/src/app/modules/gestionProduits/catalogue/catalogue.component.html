@@ -1,2 +1,37 @@
-<p>catalogue works!</p>
-<a [routerLink]="['/gestionProduits/accueilProduit']">Accueil Produits </a>
+<a [routerLink]="['/gestionProduits/accueilProduit']">Accueil Produits </a><br>
+
+<h3>
+    <p>Catalogue de produits</p>
+</h3>
+<br>
+
+<ul class="list-group">
+<div *ngFor="let c of catalogue | async">
+    <li class="list-group-item">
+    {{ c.nom }}
+
+    <button (click)="detail(c)">Afficher le détail du Produit</button>
+    <div *ngIf="c.detailVisible">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">ID Produit</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Prix</th>
+                <th scope="col">Options</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr>
+        <!--<app-detail></app-detail> -->
+        <td>{{ c.id }}</td>
+        <td>{{ c.nom }}</td>
+        <td>{{ c.prix }}</td>
+       <td> <button (click)="ajouterProduitPanier(c)">Ajouter Produit</button></td>
+    </tr>
+    </tbody>
+</table>
+    </div>
+</li>
+  </div>
+</ul>

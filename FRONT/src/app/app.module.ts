@@ -7,6 +7,7 @@ import { ClientState } from './shared/states/client-state';
 
 import { AppComponent } from './app.component';
 import { LiensComponent } from './liens/liens.component';
+import { HttpClientModule } from '@angular/common/http';
 
 const appRoutes: Routes = [
   {
@@ -39,6 +40,7 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     RouterModule.forRoot(appRoutes),
     NgxsModule.forRoot([ClientState])
   ],

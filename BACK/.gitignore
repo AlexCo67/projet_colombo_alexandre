@@ -10,6 +10,7 @@
 # dependencies
 /node_modules
 /vendor
+/buildBack
 
 # profiling files
 chrome-profiler-events*.json

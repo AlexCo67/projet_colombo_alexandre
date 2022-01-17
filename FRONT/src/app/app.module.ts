@@ -5,10 +5,12 @@ import { FormsModule } from '@angular/forms';
 import { NgxsModule } from '@ngxs/store';
 import { ClientState } from './shared/states/client-state';
 
+import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+
 import { AppComponent } from './app.component';
 import { LiensComponent } from './liens/liens.component';
-import { HttpClientModule } from '@angular/common/http';
 import { ProduitState } from './shared/states/produit-state';
+import { HttpInterceptorInterceptor } from './services/http-interceptor.interceptor';
 
 const appRoutes: Routes = [
   {
@@ -47,7 +49,11 @@ const appRoutes: Routes = [
 //    NgxsModule.forRoot([ProduitState]),
 
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS, 
+    useClass: HttpInterceptorInterceptor, 
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,1 +1,16 @@
 <p>detail-client works!</p>
+
+<h1>Formulaire</h1>
+<form *ngIf="!client$" (ngSubmit)="submit()" [formGroup]="formLogin">
+    <label for="login">Login :</label>
+    <input formControlName="login" name="login" type="text" /> <br/>
+    <label for="password">Mot de passe :</label>
+    <input formControlName="password" name="password" type="password" /> <br/>
+    <button>Connexion</button>
+</form>
+
+<div *ngIf="client$ | async; let utilisateur">
+    <p>
+      Bienvenue {{ utilisateur.login }}
+    </p>
+</div>

@@ -9,8 +9,8 @@ import { Client} from '../shared/models/client';
   })
 export class ClientService {
 
-  urlApiLogin: string = "https://projet-colombo-alexandre-back.herokuapp.com/api/login";
-  urlApiAuth: string = "https://projet-colombo-alexandre-back.herokuapp.com/api/auth/";
+  urlApiLogin: string = "/api/login";
+  urlApiAuth: string = "/api/auth/";
 
   constructor(private http: HttpClient) { }
 

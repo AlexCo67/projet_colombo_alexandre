@@ -5,3 +5,10 @@ export class AddClient {
 
   constructor(public payload: Client) {}
 }
+
+
+export class DelClient{
+  static readonly type = '[Client] Del';
+
+  constructor(public payload: Client) {}
+}

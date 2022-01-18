@@ -1,22 +1,22 @@
 import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { AddClient } from '../actions/client-actions';
+import { AddClient, DelClient } from '../actions/client-actions';
 import { ClientStateModel } from './client-state-model';
 @State<ClientStateModel>({
-  name: 'adresses',
+  name: 'clients',
   defaults: {
-    adresses: [],
+    clients: [],
   },
 })
 @Injectable()
 export class ClientState {
   @Selector()
   static getNbClients(state: ClientStateModel) {
-    return state.adresses.length;
+    return state.clients.length;
   }
   @Selector()
   static getListeClients(state: ClientStateModel) {
-    return state.adresses;
+    return state.clients;
   }
 
 
@@ -27,7 +27,20 @@ export class ClientState {
   ) {
     const state = getState();
     patchState({
-      adresses: [...state.adresses, payload],
+      clients: [...state.clients, payload],
     });
   }
+
+  @Action(DelClient)
+    del(
+        { getState, patchState }: StateContext<ClientStateModel>, 
+        { payload }: DelClient) {
+        const state = getState();
+        patchState({
+            clients: [...state.clients.filter(id => id.login != payload.login)],
+        });
+    } 
+
+
+
 }

@@ -1,7 +1,8 @@
 <p>detail-client works!</p>
 
-<h1>Formulaire</h1>
-<form *ngIf="!client$" (ngSubmit)="submit()" [formGroup]="formLogin">
+
+<form *ngIf="((clients$ | async)?.length==0)" (ngSubmit)="submit()" [formGroup]="formLogin">
+    <h1>Connexion</h1>
     <label for="login">Login :</label>
     <input formControlName="login" name="login" type="text" /> <br/>
     <label for="password">Mot de passe :</label>
@@ -9,8 +10,14 @@
     <button>Connexion</button>
 </form>
 
-<div *ngIf="client$ | async; let utilisateur">
-    <p>
-      Bienvenue {{ utilisateur.login }}
-    </p>
+<div *ngFor="let c of clients$ | async">
+  <h1>Détails client</h1>
+  <p>
+    Bienvenue {{ c.login }} VIA LIST
+  </p>
+
+  <form action="/" (ngSubmit)="deco(c)">
+    <button>Deconnexion</button>
+  </form>
+
 </div>

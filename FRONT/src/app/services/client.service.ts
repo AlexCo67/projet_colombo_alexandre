@@ -12,7 +12,8 @@ export class ClientService {
   urlApiLogin: string = "/api/login";
   urlApiAuth: string = "/api/auth/";
   urlApiForm: string = "/api/form";
-  urlApiHello:string="/api/hello/"
+  urlApiHello:string="/api/hello/";
+  urlApiUpdate:string="/api/update";
 
   constructor(private http: HttpClient) { }
 
@@ -42,5 +43,21 @@ export class ClientService {
     let data: string = "login=" + login;
     return this.http.get<Client>(this.urlApiHello + login);
   }
+
+  public postUdpate(login:string, password:string, name:string, lastName:string, postalCode:string, town:string, email:string, phone:string, civil:string) : Observable<Client>{
+    let data: string = "login=" + login + "&password=" + password + "&name="+name + "&lastName="+lastName+ "&postalCode="+postalCode+"&town="+town+"&email="+email+"&phone="+phone + "&civil="+civil;
+    let httpOptions = {
+      headers: new HttpHeaders({"Content-Type": "application/x-www-form-urlencoded"})
+    };
+    return this.http.post<Client>(this.urlApiUpdate, data, httpOptions);
+  }
+
+  public postUdpate2(login:string, password:string, name:string, lastName:string, postalCode:string, town:string, email:string, phone:string, civil:string){
+    let data: string = "login=" + login + "&password=" + password + "&name="+name + "&lastName="+lastName+ "&postalCode="+postalCode+"&town="+town+"&email="+email+"&phone="+phone + "&civil="+civil;
+    return this.http.post<Client>(this.urlApiUpdate, data);
+  }
+
+
+
 
 }

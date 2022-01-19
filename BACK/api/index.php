@@ -95,7 +95,7 @@ $app->add(new JwtAuthentication([
     "secure" => false,
     "algorithm" => ["HS256"],
     "path" => ["/api"],
-    "ignore" => ["/api/login", "/api/hello", "/api/form"],
+    "ignore" => ["/api/login", "/api/hello", "/api/form", "/api/update", "/api/update2"],
     "error" => function ($response, $arguments) {
         $data = array('ERREUR' => 'Connexion', 'ERREUR' => 'JWT Non valide');
         $response = $response->withStatus(401);
@@ -146,7 +146,20 @@ $app->get('/api/auth/{login}', function (Request $request, Response $response, $
   if ($login) 
   {
       
+    global $entityManager;
+    $cr = $entityManager->getRepository('Client');
+    $client = $cr->findOneByLogin($login);
+
+
       $data["login"] = $login;
+      $data["password"] = $client->getPassword();
+      $data["lastName"] = $client->getNom();
+      $data["name"] = $client->getPrenom();
+      $data["town"] = $client->getVille();
+      $data["phone"] = $client->getTelephone();
+      $data["postalCode"] = $client->getCodepostal();
+      $data["email"] = $client->getEmail();
+      $data["civil"] = $client->getCivilite();
       $response = addHeaders($response);
       $response = createJWT($response, $login);
       
@@ -161,6 +174,61 @@ $app->get('/api/auth/{login}', function (Request $request, Response $response, $
 });
 
 
+
+$app->post('/api/update', function (Request $request, Response $response, $args) {
+
+try{
+  $data = $request->getParsedBody();
+    if(is_null($data)){
+      $data = array('VIDE' => $data);
+      $response = addHeaders($response);
+      $response->getBody()->write(json_encode($data, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
+  
+      return $response;
+
+    }
+
+  
+ //   $login = $body['login'];
+  //  $password = $body['password'];
+  //  $nom = $body['lastName'];
+  //  $prenom = $body['name'];
+  //  $ville = $body['town'];
+  //  $codePostal = $body['postalCode'];
+  //  $email = $body['email'];
+  //  $tel = $body['phone'];
+  //  $civilite = $body['civil'];
+
+  global $entityManager;
+
+    $cr = $entityManager->getRepository('Client');
+    $client = $cr->findOneByLogin("test");
+
+    $client->setNom($data['lastName']);
+    $client->setPrenom($data['name']);
+    $client->setVille($data['town']);
+    $client->setTelephone($data['phone']);
+    $client->setEmail($data['email']);
+    $client->setPassword($data['password']);
+    $client->setCivilite($data['civil']);
+    $client->setCodepostal($data['postalCode']);
+    $entityManager->flush();
+
+    $data = array('on teste' => $data['lastName']);
+    $response = addHeaders($response);
+    $response->getBody()->write(json_encode($data, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
+
+    return $response;
+}
+catch (Exception $e){
+  $data = array('on teste' => 'detection erreur ');
+  $response = addHeaders($response);
+    $response->getBody()->write(json_encode($data, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
+
+    return $response;
+}
+
+});
 
 
 
@@ -204,6 +272,33 @@ else{
   return $response;
 }
 });
+
+
+
+
+
+
+
+
+$app->post('/api/update2', function (Request $request, Response $response, $args) {
+
+  
+    $data = array('on teste' => 'OK ');
+    $response = addHeaders($response);
+      $response->getBody()->write(json_encode($data, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
+      return $response;
+  });
+
+
+
+
+
+
+
+
+
+
+
 
 
 // Run app

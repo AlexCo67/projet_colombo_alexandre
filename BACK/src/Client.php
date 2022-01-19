@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Client
  *
- * @ORM\Table(name="client")
+ * @ORM\Table(name="Client")
  * @ORM\Entity
  */
 class Client
@@ -15,236 +15,204 @@ class Client
     /**
      * @var int
      *
-     * @ORM\Column(name="id_client", type="integer")
+     * @ORM\Column(name="IdClient", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="SEQUENCE")
-     * @ORM\SequenceGenerator(sequenceName="client_id_client_seq", allocationSize=1, initialValue=1)
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $idClient;
+    private $idclient;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="lastname", type="string", length=30, nullable=true)
-     */
-    private $lastname;
-
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="name", type="string", length=30, nullable=true)
-     */
-    private $name;
-
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="adress", type="string", length=100, nullable=true)
-     */
-    private $adress;
-
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="phone", type="string", length=15, nullable=true)
-     */
-    private $phone;
-
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="town", type="string", length=30, nullable=true)
-     */
-    private $town;
-
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="civil", type="string", length=30, nullable=true)
-     */
-    private $civil;
-
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="email", type="string", length=100, nullable=true)
-     */
-    private $email;
-
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="postalcode", type="string", length=10, nullable=true)
-     */
-    private $postalcode;
-
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="login", type="string", length=50, nullable=true)
+     * @ORM\Column(name="Login", type="string", length=100, nullable=true)
      */
     private $login;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="password", type="string", length=50, nullable=true)
+     * @ORM\Column(name="Nom", type="string", length=100, nullable=true)
+     */
+    private $nom;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="Prenom", type="string", length=100, nullable=true)
+     */
+    private $prenom;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="Ville", type="string", length=100, nullable=true)
+     */
+    private $ville;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="CodePostal", type="string", length=100, nullable=true)
+     */
+    private $codepostal;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="Email", type="string", length=100, nullable=true)
+     */
+    private $email;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="Civilite", type="string", length=100, nullable=true)
+     */
+    private $civilite;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="Telephone", type="string", length=100, nullable=true)
+     */
+    private $telephone;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="Password", type="string", length=100, nullable=true)
      */
     private $password;
 
 
     /**
-     * Get idClient.
+     * Get idclient.
      *
      * @return int
      */
-    public function getIdClient()
+    public function getIdclient()
     {
-        return $this->idClient;
+        return $this->idclient;
     }
 
     /**
-     * Set lastname.
+     * Set login.
      *
-     * @param string|null $lastname
+     * @param string|null $login
      *
      * @return Client
      */
-    public function setLastname($lastname = null)
+    public function setLogin($login = null)
     {
-        $this->lastname = $lastname;
+        $this->login = $login;
 
         return $this;
     }
 
     /**
-     * Get lastname.
+     * Get login.
      *
      * @return string|null
      */
-    public function getLastname()
+    public function getLogin()
     {
-        return $this->lastname;
+        return $this->login;
     }
 
     /**
-     * Set name.
+     * Set nom.
      *
-     * @param string|null $name
+     * @param string|null $nom
      *
      * @return Client
      */
-    public function setName($name = null)
+    public function setNom($nom = null)
     {
-        $this->name = $name;
+        $this->nom = $nom;
 
         return $this;
     }
 
     /**
-     * Get name.
+     * Get nom.
      *
      * @return string|null
      */
-    public function getName()
+    public function getNom()
     {
-        return $this->name;
+        return $this->nom;
     }
 
     /**
-     * Set adress.
+     * Set prenom.
      *
-     * @param string|null $adress
+     * @param string|null $prenom
      *
      * @return Client
      */
-    public function setAdress($adress = null)
+    public function setPrenom($prenom = null)
     {
-        $this->adress = $adress;
+        $this->prenom = $prenom;
 
         return $this;
     }
 
     /**
-     * Get adress.
+     * Get prenom.
      *
      * @return string|null
      */
-    public function getAdress()
+    public function getPrenom()
     {
-        return $this->adress;
+        return $this->prenom;
     }
 
     /**
-     * Set phone.
+     * Set ville.
      *
-     * @param string|null $phone
+     * @param string|null $ville
      *
      * @return Client
      */
-    public function setPhone($phone = null)
+    public function setVille($ville = null)
     {
-        $this->phone = $phone;
+        $this->ville = $ville;
 
         return $this;
     }
 
     /**
-     * Get phone.
+     * Get ville.
      *
      * @return string|null
      */
-    public function getPhone()
+    public function getVille()
     {
-        return $this->phone;
+        return $this->ville;
     }
 
     /**
-     * Set town.
+     * Set codepostal.
      *
-     * @param string|null $town
+     * @param string|null $codepostal
      *
      * @return Client
      */
-    public function setTown($town = null)
+    public function setCodepostal($codepostal = null)
     {
-        $this->town = $town;
+        $this->codepostal = $codepostal;
 
         return $this;
     }
 
     /**
-     * Get town.
+     * Get codepostal.
      *
      * @return string|null
      */
-    public function getTown()
+    public function getCodepostal()
     {
-        return $this->town;
-    }
-
-    /**
-     * Set civil.
-     *
-     * @param string|null $civil
-     *
-     * @return Client
-     */
-    public function setCivil($civil = null)
-    {
-        $this->civil = $civil;
-
-        return $this;
-    }
-
-    /**
-     * Get civil.
-     *
-     * @return string|null
-     */
-    public function getCivil()
-    {
-        return $this->civil;
+        return $this->codepostal;
     }
 
     /**
@@ -272,51 +240,51 @@ class Client
     }
 
     /**
-     * Set postalcode.
+     * Set civilite.
      *
-     * @param string|null $postalcode
+     * @param string|null $civilite
      *
      * @return Client
      */
-    public function setPostalcode($postalcode = null)
+    public function setCivilite($civilite = null)
     {
-        $this->postalcode = $postalcode;
+        $this->civilite = $civilite;
 
         return $this;
     }
 
     /**
-     * Get postalcode.
+     * Get civilite.
      *
      * @return string|null
      */
-    public function getPostalcode()
+    public function getCivilite()
     {
-        return $this->postalcode;
+        return $this->civilite;
     }
 
     /**
-     * Set login.
+     * Set telephone.
      *
-     * @param string|null $login
+     * @param string|null $telephone
      *
      * @return Client
      */
-    public function setLogin($login = null)
+    public function setTelephone($telephone = null)
     {
-        $this->login = $login;
+        $this->telephone = $telephone;
 
         return $this;
     }
 
     /**
-     * Get login.
+     * Get telephone.
      *
      * @return string|null
      */
-    public function getLogin()
+    public function getTelephone()
     {
-        return $this->login;
+        return $this->telephone;
     }
 
     /**

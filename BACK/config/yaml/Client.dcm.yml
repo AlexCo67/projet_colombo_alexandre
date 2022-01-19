@@ -1,75 +1,78 @@
 Client:
     type: entity
-    table: client
+    table: Client
     id:
-        idClient:
+        idclient:
             type: integer
             nullable: false
             options:
                 unsigned: false
             id: true
-            column: id_client
+            column: IdClient
             generator:
-                strategy: SEQUENCE
+                strategy: IDENTITY
     fields:
-        lastname:
-            type: string
-            nullable: true
-            length: 30
-            options:
-                fixed: false
-        name:
-            type: string
-            nullable: true
-            length: 30
-            options:
-                fixed: false
-        adress:
+        login:
             type: string
             nullable: true
             length: 100
             options:
                 fixed: false
-        phone:
+            column: Login
+        nom:
             type: string
             nullable: true
-            length: 15
+            length: 100
             options:
                 fixed: false
-        town:
+            column: Nom
+        prenom:
             type: string
             nullable: true
-            length: 30
+            length: 100
             options:
                 fixed: false
-        civil:
+            column: Prenom
+        ville:
             type: string
             nullable: true
-            length: 30
+            length: 100
             options:
                 fixed: false
+            column: Ville
+        codepostal:
+            type: string
+            nullable: true
+            length: 100
+            options:
+                fixed: false
+            column: CodePostal
         email:
             type: string
             nullable: true
             length: 100
             options:
                 fixed: false
-        postalcode:
+            column: Email
+        civilite:
             type: string
             nullable: true
-            length: 10
+            length: 100
             options:
                 fixed: false
-        login:
+            column: Civilite
+        telephone:
             type: string
             nullable: true
-            length: 50
+            length: 100
             options:
                 fixed: false
+            column: Telephone
         password:
             type: string
             nullable: true
-            length: 50
+            length: 100
             options:
                 fixed: false
+            column: Password
     lifecycleCallbacks: {  }

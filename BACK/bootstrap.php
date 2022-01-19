@@ -7,11 +7,11 @@ require_once "vendor/autoload.php";
 $isDevMode = true;
 $config = Setup::createYAMLMetadataConfiguration(array(__DIR__ . "/config/yaml"), $isDevMode);
 $conn = array(
-'host' => 'tyke.db.elephantsql.com',
-'driver' => 'pdo_pgsql',
-'user' => 'aqfrmvst',
-'password' => 'VD508TwTGRfJZOtKZZyF8cg5FxnK7HuK',
-'dbname' => 'aqfrmvst',
-'port' => '5432'
+    'host' => '51.159.25.115',
+    'driver' => 'pdo_mysql',
+    'user' => 'alex',
+    'password' => 'fIp&oABx3TWJH4tm',
+    'dbname' => 'shop',
+    'port' => '10406'
 );
 $entityManager = EntityManager::create($conn, $config);

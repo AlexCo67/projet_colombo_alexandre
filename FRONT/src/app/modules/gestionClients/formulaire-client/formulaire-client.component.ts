@@ -1,7 +1,10 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit,Output, EventEmitter  } from '@angular/core';
 
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Store } from '@ngxs/store';
+import { Observable } from 'rxjs';
+import { ClientService } from 'src/app/services/client.service';
 import { AddClient } from 'src/app/shared/actions/client-actions';
 import { Client } from 'src/app/shared/models/client';
 
@@ -11,7 +14,7 @@ import { Client } from 'src/app/shared/models/client';
   styleUrls: ['./formulaire-client.component.css']
 })
 export class FormulaireClientComponent implements OnInit {
-
+  client$!: Observable<Client>;
   public client:Client = new Client();
 
   userForm = new FormGroup({
@@ -27,7 +30,7 @@ export class FormulaireClientComponent implements OnInit {
     password:  new FormControl("",[Validators.required, Validators.pattern("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{10,20}$")])});
 
 
-  constructor(private formBuilder: FormBuilder, private store: Store) { }
+  constructor(private formBuilder: FormBuilder, private store: Store, private authentificationService: ClientService, private http: HttpClient) { }
 
   onFormSubmit(): void {
     console.log("Form invalide ? " + this.userForm.valid);
@@ -61,6 +64,15 @@ export class FormulaireClientComponent implements OnInit {
   
       console.log(clientToAdd);
       this.store.dispatch(new AddClient(clientToAdd));
+      
+      console.log(clientToAdd.login+' '+clientToAdd.password+' '+clientToAdd.name+' '+clientToAdd.lastName+' '+clientToAdd.postalCode.toString()+' '+clientToAdd.town+' '+clientToAdd.email+' '+clientToAdd.phone.toString()+' '+clientToAdd.civil);
+      console.log("test hello");
+      this.authentificationService.getHello("HELLO");
+      console.log("test hello ok ?");
+      this.authentificationService.postForm(clientToAdd.login, clientToAdd.password, clientToAdd.name, clientToAdd.lastName, clientToAdd.postalCode, clientToAdd.town, clientToAdd.email, clientToAdd.phone, clientToAdd.civil).subscribe();
+      //this.authentificationService.postForm(clientToAdd.login, clientToAdd.password, clientToAdd.name, clientToAdd.lastName, clientToAdd.postalCode.toString(), clientToAdd.town, clientToAdd.email, clientToAdd.phone.toString(), clientToAdd.civil);
+      console.log("ok c'est push");
+
       alert("Client créé");
     }
 
@@ -68,6 +80,15 @@ export class FormulaireClientComponent implements OnInit {
 
 
   ngOnInit(): void {
+  }
+
+  HELLO(){
+    console.log("BONJOUR ???");
+    //alert("BONJOUR ?");
+    this.authentificationService.getHello("HELLO").subscribe(); 
+    //alert("BONJOUR !");
+    return this.http.get<Client>("/api/hello/" + "HELLO");
+
   }
 
 

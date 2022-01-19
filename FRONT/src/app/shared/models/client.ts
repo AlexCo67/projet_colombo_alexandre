@@ -3,11 +3,11 @@ export class Client {
   lastName!: string;
   name!: string;
   adress!: string;
-  phone!: number;
+  phone!: string;
   town!: string;
   civil!: string;
   email!: string;
-  postalCode!: number;
+  postalCode!: string;
   login!: string;
   password!: string;
 

@@ -43,6 +43,9 @@ export class DetailClientComponent implements OnInit {
     // A MODIFIER
     this.store.dispatch(new AddClient(c));
 
+    this.authentificationService.getHello("HELLO");
+
+
     this.authentificationService.postLogin(this.formLogin.get("login")?.value, this.formLogin.get("password")?.value).subscribe(
       ()=>{
         this.client$ = this.authentificationService.getLogin(this.formLogin.get("login")?.value);

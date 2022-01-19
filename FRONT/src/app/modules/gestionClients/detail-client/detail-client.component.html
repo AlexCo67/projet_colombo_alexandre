@@ -13,7 +13,7 @@
 <div *ngFor="let c of clients$ | async">
   <h1>Détails client</h1>
   <p>
-    Bienvenue {{ c.login }} VIA LIST
+    Bienvenue {{ c.login }}
   </p>
 
   <form action="/" (ngSubmit)="deco(c)">

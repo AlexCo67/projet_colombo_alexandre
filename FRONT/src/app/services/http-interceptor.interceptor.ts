@@ -18,8 +18,9 @@ export class HttpInterceptorInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     if (this.jwtToken !== "") {
       request = request.clone({setHeaders: {Authorization: `Bearer ${this.jwtToken}` }});
+      console.log('got JWT');
     }
-
+    console.log("return somehting");
     return next.handle(request).pipe(tap(
       (evt: HttpEvent<any>) => {
           if (evt instanceof HttpResponse) {

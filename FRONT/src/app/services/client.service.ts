@@ -11,6 +11,8 @@ export class ClientService {
 
   urlApiLogin: string = "/api/login";
   urlApiAuth: string = "/api/auth/";
+  urlApiForm: string = "/api/form";
+  urlApiHello:string="/api/hello/"
 
   constructor(private http: HttpClient) { }
 
@@ -27,4 +29,18 @@ export class ClientService {
     let data: string = "login=" + login;
     return this.http.get<Client>(this.urlApiAuth + login);
   }
+
+  public postForm(login:string, password:string, name:string, lastName:string, postalCode:string, town:string, email:string, phone:string, civil:string) : Observable<Client>{
+    let data: string = "login=" + login + "&password=" + password + "&name="+name + "&lastName="+lastName+ "&postalCode="+postalCode+"&town="+town+"&email="+email+"&phone="+phone + "&civil="+civil;
+    let httpOptions = {
+      headers: new HttpHeaders({"Content-Type": "application/x-www-form-urlencoded"})
+    };
+    return this.http.post<Client>(this.urlApiForm, data, httpOptions);
+  }
+
+  public getHello(login:string){
+    let data: string = "login=" + login;
+    return this.http.get<Client>(this.urlApiHello + login);
+  }
+
 }

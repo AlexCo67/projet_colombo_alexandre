@@ -23,7 +23,7 @@ const appChild: Routes = [
     component: DetailClientComponent,
   },
   {
-    path: 'formulaireCilent',
+    path: 'formulaireClient',
     component: FormulaireClientComponent,
   },
 

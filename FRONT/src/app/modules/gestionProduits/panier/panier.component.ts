@@ -6,6 +6,7 @@ import { ProduitState } from 'src/app/shared/states/produit-state';
 import { Store } from '@ngxs/store';
 import { DelProduit } from 'src/app/shared/actions/produit-actions';
 
+
 @Component({
   selector: 'app-panier',
   templateUrl: './panier.component.html',
@@ -13,7 +14,7 @@ import { DelProduit } from 'src/app/shared/actions/produit-actions';
 })
 export class PanierComponent implements OnInit {
 
-  constructor(private store: Store) { }
+  constructor(private store: Store) {}
 
   supprimerProduitPanier(c:Produit){
     console.log("produit supprimé" + c.nom);
@@ -23,7 +24,6 @@ export class PanierComponent implements OnInit {
 
 public payer() :void{
   this.store.reset(new ProduitState);
-  
 }
 
 

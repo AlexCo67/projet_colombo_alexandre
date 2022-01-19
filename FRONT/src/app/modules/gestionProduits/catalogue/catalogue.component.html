@@ -1,4 +1,17 @@
-<a [routerLink]="['/gestionProduits/accueilProduit']">Accueil Produits </a><br>
+<br/>
+<div class = "container text-left display-5">
+    <div class="row">
+        <div class="col-sm ">
+<a [routerLink]="['/gestionProduits/accueilProduit']">Accueil Produits</a>
+</div>
+<div class="col-sm">
+<a [routerLink]="['/gestionProduits/panierProduit']">Panier </a>
+</div>
+<div class="col-sm">
+<a [routerLink]="['/gestionProduits/catalogueProduit']"><p><strong>Catalogue</strong></p> </a>
+</div>
+    </div>
+<br>
 
 <h3>
     <p>Catalogue de produits</p>
@@ -11,7 +24,7 @@
 
 
 <ul class="list-group">
-<div *ngFor="let c of (catalogue | async |filtreRecherche:recherche) as listeRecherche" >
+<div class="container" *ngFor="let c of (catalogue | async |filtreRecherche:recherche) as listeRecherche" >
     <li class="list-group-item">
     {{ c.nom }}
 

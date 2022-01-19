@@ -1,96 +1,116 @@
-<p>detail-client works!</p>
+<br/>
+<div class = "container text-left display-5">
+    <div class="row">
+        <div class="col-sm ">
+            <a [routerLink]="['/gestionClients/accueilClient']">Accueil Client</a>
+        </div>
+        <div class="col-sm">
+<a [routerLink]="['/gestionClients/detailClient']"><p><strong>Détails Client</strong></p> </a>
+        </div>
+        <div class="col-sm">
+<a [routerLink]="['/gestionClients/formulaireClient']">Inscription </a>
+    </div>
+
+</div>
+</div>
+<br/>
 
 
+
+<div class="container">
 <form *ngIf="((clients$ | async)?.length==0)" (ngSubmit)="submit()" [formGroup]="formLogin">
     <h1>Connexion</h1>
-    <label for="login">Login :</label>
-    <input formControlName="login" name="login" type="text" /> <br/>
+    <div class="row">
+      <div class="col-sm">
+    <label for="login">Login :</label> <br/>
     <label for="password">Mot de passe :</label>
+      </div>
+      <div class="col-sm ">
+    <input formControlName="login" name="login" type="text" /> <br/>
     <input formControlName="password" name="password" type="password" /> <br/>
-    <button>Connexion</button>
-</form>
+      </div>
+      <div class="col-sm"></div>
+      <div class="col-sm"></div>
+      <div class="col-sm"></div>
+      <div class="col-sm"></div>
 
-<div *ngFor="let c of clients$ | async">
+    </div>
+    <div class="container">
+    <button>Connexion</button>
+  </div>
+</form>
+</div>
+
+
+<div class="container" *ngFor="let c of clients$ | async">
   <h1>Détails client</h1>
-  <p>
+  <h1>
     Bienvenue {{ c.login }}
-  </p>
+  </h1>
 
   <form action="/" (ngSubmit)="deco(c)">
     <button>Deconnexion</button>
   </form>
 
-</div>
+<!-- </div> -->
 
-<div  *ngIf="client$ | async ; let currentClient">
-   <p> {{currentClient.login}} </p> <br/>
-   <p> {{currentClient.name}} </p> <br/>
-   <p> {{currentClient.lastName}} </p> <br/>
-   <p> {{currentClient.phone}} </p> <br/>
-   <p> {{currentClient.town}} </p> <br/>
-   <p> {{currentClient.civil}} </p> <br/>
-   <p> {{currentClient.email}} </p> <br/>
-   <p> {{currentClient.postalCode}} </p> <br/>
-   <p> {{currentClient.password}} </p> <br/>
-
-
-
-
-<div class="container">
+<!--<div class="container" *ngIf="client$ | async ; let currentClient">-->
+<div class="container overflow-auto">
   <form [formGroup]="userForm" (ngSubmit)="onFormSubmit()">
     <div class="row mb-3">
    <label class="label">Nom : </label>
-     <input  name="lastName" formControlName="lastName" placeholder="Entrez un nom">
+     <input  name="lastName"  formControlName="lastName" placeholder="{{ c.lastName }}">
      <label *ngIf="userForm.get('lastName')!.invalid && (userForm.get('lastName')!.dirty || userForm.get('lastName')!.touched)" [ngClass] = "'error'"> Entrée Invalide</label>
      <small class="text-muted">Pas de caractères numériques ou spéciaux</small>
    </div>
      <div class="row mb-3">
    <label class="label">Prénom : </label>
-     <input  name="name" formControlName="name" placeholder="Entrez un prénom">
+     <input  name="name"  formControlName="name" placeholder="{{ c.name }}">
      <label *ngIf="userForm.get('name')!.invalid && (userForm.get('name')!.dirty || userForm.get('name')!.touched)" [ngClass] = "'error'"> Entrée Invalide</label>
      <small class="text-muted">Pas de caractères numériques ou spéciaux</small>
    </div>
-     <div class="row mb-3">
+<!--     <div class="row mb-3">
     <label class="label">Adresse : </label>
-     <input   name="adress" formControlName="adress" placeholder="Entrez une adresse">
+     <input   name="adress" formControlName="adress" value={{currentClient.lastName}} placeholder="Entrez une adresse">
      <label *ngIf="userForm.get('adress')!.invalid && (userForm.get('adress')!.dirty || userForm.get('adress')!.touched)" [ngClass] = "'error'"> Entrée Invalide</label>
 
      <small class="text-muted">Numéro et rue</small>
-   </div>
+   </div> -->
+
     <div class="row mb-3">
    <label class="label">Code Postal : </label>
-     <input   name="postal" formControlName="postalCode" placeholder="Entrez un code postal">
+     <input   name="postal"  formControlName="postalCode" placeholder="{{ c.postalCode }}">
      <label *ngIf="userForm.get('postalCode')!.invalid && (userForm.get('postalCode')!.dirty || userForm.get('postalCode')!.touched)" [ngClass] = "'error'"> Entrée Invalide</label>
 
      <small class="text-muted">Code à 5 chiffres</small>
    </div>
     <div class="row mb-3">
      <label class="label">Ville : </label>
-     <input   name="town" formControlName="town" placeholder="Entrez une ville">
+     <input   name="town" formControlName="town"  placeholder="{{ c.town }}">
      <label *ngIf="userForm.get('town')!.invalid && (userForm.get('town')!.dirty || userForm.get('town')!.touched)" [ngClass] = "'error'"> Entrée Invalide</label>
      <small class="text-muted">Pas de caractères numériques ou spéciaux</small>
    </div>
      <div class="row mb-3">
      <label class="label">Téléphone : </label>
-     <input  name="phone" formControlName="phone" placeholder="Entrez un numéro de téléphone">
+     <input  name="phone" formControlName="phone"  placeholder="{{ c.phone }}">
      <label *ngIf="userForm.get('phone')!.invalid && (userForm.get('phone')!.dirty || userForm.get('phone')!.touched)" [ngClass] = "'error'"> Entrée Invalide</label>
      <small class="text-muted">Code à 10 chiffres</small>
    </div>
      <div class="row mb-3">
      <label class="label">Email : </label>
-     <input   name="email" formControlName="email" placeholder="Entrez un email">
+     <input   name="email" formControlName="email" placeholder="{{ c.email }}">
      <label *ngIf="userForm.get('email')!.invalid && (userForm.get('email')!.dirty || userForm.get('email')!.touched)" [ngClass] = "'error'"> Entrée Invalide</label>
      <small class="text-muted">Adresse e-mail</small>
    </div>
      <div class="row mb-3">
      <label class="label">Civilité : 
-     <br><input name="civility" formControlName="civility" type="radio"  value="Monsieur">M.
+     <br><input name="civility" formControlName="civility" type="radio" value="Monsieur">M.
      <br><input name="civility" formControlName="civility" type="radio" value="Madame">Mme
      </label>
    </div>
   <div class="row mb-3">
   <label class="label">Login : </label>
-  <input  name="login" formControlName="login" placeholder="Entrez un pseudo">
+  <input  name="login" formControlName="login"  placeholder="{{ c.login }}">
   <label *ngIf="userForm.get('login')!.invalid && (userForm.get('login')!.dirty || userForm.get('login')!.touched)" [ngClass] = "'error'"> Entrée Invalide</label>
   <small class="text-muted">Pas de caractères spéciaux</small>
 </div>

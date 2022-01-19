@@ -61,9 +61,7 @@ export class DetailClientComponent implements OnInit {
 
     this.authentificationService.postLogin(this.formLogin.get("login")?.value, this.formLogin.get("password")?.value).subscribe(
       ()=>{
-        this.client$ = this.authentificationService.getLogin(this.formLogin.get("login")?.value);
-        this.store.dispatch(new AddClient(c));
-        
+        this.authentificationService.getLogin(this.formLogin.get("login")?.value).subscribe((res)=>this.store.dispatch(new AddClient(res))); 
         
       },
       (error)=>{
@@ -91,7 +89,7 @@ export class DetailClientComponent implements OnInit {
         this.c.login=this.userForm.get('login')!.value;
         this.c.lastName=this.userForm.get('lastName')!.value;
         this.c.name=this.userForm.get('name')!.value;
-        this.c.adress=this.userForm.get('adress')!.value;
+        //this.c.adress=this.userForm.get('adress')!.value;
         this.c.phone=this.userForm.get('phone')!.value;
         this.c.town=this.userForm.get('town')!.value;
         this.c.civil=this.userForm.get('civility')!.value;

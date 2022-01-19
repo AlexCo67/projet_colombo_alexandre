@@ -1,3 +1,21 @@
+<br/>
+<div class = "container text-left display-5">
+    <div class="row">
+        <div class="col-sm ">
+            <a [routerLink]="['/gestionClients/accueilClient']">Accueil Client</a>
+        </div>
+        <div class="col-sm">
+<a [routerLink]="['/gestionClients/detailClient']">Détails Client</a>
+        </div>
+        <div class="col-sm">
+<a [routerLink]="['/gestionClients/formulaireClient']"><p><strong>Inscription</strong></p> </a>
+    </div>
+
+</div>
+</div>
+<br/>
+
+
 <div class="container">
     <form [formGroup]="userForm" (ngSubmit)="onFormSubmit()">
       <div class="row mb-3">

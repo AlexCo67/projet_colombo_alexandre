@@ -188,7 +188,16 @@ $app->post('/api/login', function (Request $request, Response $response, $args) 
   }
 else{
       $client=$result["message"];
-      $data["login"] = $login;
+//        $data=array('Login'=>$client->getLogin() );    
+      $data["login"] = $client->getLogin();
+      $data["password"] = $client->getPassword();
+      $data["nom"] = $client->getNom();
+      $data["prenom"] = $client->getPrenom();
+      $data["ville"] = $client->getVille();
+      $data["tel"] = $client->getTelephone();
+      $data["codePostal"] = $client->getCodepostal();
+      $data["email"] = $client->getEmail();
+      $data["civilite"] = $client->getCivilite();
       $response = addHeaders($response);
       $response = createJWT($response, $login);
       $response->getBody()->write(json_encode($data, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));

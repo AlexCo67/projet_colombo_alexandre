@@ -49,6 +49,8 @@ export class DetailClientComponent implements OnInit {
       ()=>{
         this.client$ = this.authentificationService.getLogin(this.formLogin.get("login")?.value);
         this.store.dispatch(new AddClient(c));
+        
+        
       },
       (error)=>{
         alert("Erreur de connexion, login ou mot de passe inconnu");

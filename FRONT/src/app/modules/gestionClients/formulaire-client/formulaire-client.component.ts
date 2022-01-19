@@ -63,7 +63,6 @@ export class FormulaireClientComponent implements OnInit {
 
   
       console.log(clientToAdd);
-      //this.store.dispatch(new AddClient(clientToAdd));
       console.log(clientToAdd.login+' '+clientToAdd.password+' '+clientToAdd.name+' '+clientToAdd.lastName+' '+clientToAdd.postalCode.toString()+' '+clientToAdd.town+' '+clientToAdd.email+' '+clientToAdd.phone.toString()+' '+clientToAdd.civil);
       this.authentificationService.postForm(clientToAdd.login, clientToAdd.password, clientToAdd.name, clientToAdd.lastName, clientToAdd.postalCode, clientToAdd.town, clientToAdd.email, clientToAdd.phone, clientToAdd.civil).subscribe();
       console.log("ok c'est push");

@@ -21,3 +21,16 @@
   </form>
 
 </div>
+
+<div  *ngIf="client$ | async ; let currentClient">
+   <p> {{currentClient.login}} </p> <br/>
+   <p> {{currentClient.name}} </p> <br/>
+   <p> {{currentClient.lastName}} </p> <br/>
+   <p> {{currentClient.phone}} </p> <br/>
+   <p> {{currentClient.town}} </p> <br/>
+   <p> {{currentClient.civil}} </p> <br/>
+   <p> {{currentClient.email}} </p> <br/>
+   <p> {{currentClient.postalCode}} </p> <br/>
+   <p> {{currentClient.password}} </p> <br/>
+
+</div>

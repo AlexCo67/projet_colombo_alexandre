@@ -5,8 +5,13 @@
 </h3>
 <br>
 
+<div class="container">
+  <input type="search"  [(ngModel)]="recherche">
+  </div>
+
+
 <ul class="list-group">
-<div *ngFor="let c of catalogue | async">
+<div *ngFor="let c of (catalogue | async |filtreRecherche:recherche) as listeRecherche" >
     <li class="list-group-item">
     {{ c.nom }}
 
@@ -35,3 +40,9 @@
 </li>
   </div>
 </ul>
+
+<div *ngIf="(catalogue |async|filtreRecherche:recherche).length <1">
+  <div class="alert alert-primary container" role="alert">
+    Pas d'article trouvé
+  </div>
+</div>

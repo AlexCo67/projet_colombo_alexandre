@@ -4,6 +4,15 @@
     <p>Panier de produits</p>
   </h3>
   
+
+  <div *ngIf="((liste$ | async)?.length==0)">
+    <div class="alert alert-primary container" role="alert">
+      Pas d'article dans le panier
+    </div>
+  </div>
+
+
+
   
   <div *ngFor="let c of liste$ | async">
     <table class="table">
@@ -21,3 +30,7 @@
   </tbody>
   </table>
     </div>
+
+    <form action="/" *ngIf="!((liste$ | async)?.length==0)" (ngSubmit)="payer()">
+      <button class="btn btn-success" type="submit" class="btn btn-primary">Payer</button>
+    </form>

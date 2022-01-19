@@ -21,6 +21,12 @@ export class PanierComponent implements OnInit {
   }
 
 
+public payer() :void{
+  this.store.reset(new ProduitState);
+  
+}
+
+
   ngOnInit(): void {
   }
 

@@ -11,12 +11,13 @@ import { AddProduit } from 'src/app/shared/actions/produit-actions';
   styleUrls: ['./catalogue.component.css']
 })
 export class CatalogueComponent implements OnInit {
-
+  
+  recherche='';
 
   constructor(private serviceCatalogue : serviceCatalogue,private store: Store) { 
 
   }
-
+ 
   catalogue?: Observable<Array<Produit>>;
 
   ajouterProduitPanier(c:Produit){

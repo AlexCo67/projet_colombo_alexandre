@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import { LiensComponent } from './liens/liens.component';
 import { ProduitState } from './shared/states/produit-state';
 import { HttpInterceptorInterceptor } from './services/http-interceptor.interceptor';
+import { RecherchePipe } from './modules/gestionProduits/catalogue/recherche.pipe';
 
 const appRoutes: Routes = [
   {
@@ -38,7 +39,8 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    LiensComponent
+    LiensComponent,
+
 
   ],
   imports: [
@@ -47,6 +49,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
 //    NgxsModule.forRoot([ClientState]),
 //    NgxsModule.forRoot([ProduitState]),
+
 
   ],
   providers: [{

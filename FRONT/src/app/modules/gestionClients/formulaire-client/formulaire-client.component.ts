@@ -63,32 +63,14 @@ export class FormulaireClientComponent implements OnInit {
 
   
       console.log(clientToAdd);
-      this.store.dispatch(new AddClient(clientToAdd));
-      
+      //this.store.dispatch(new AddClient(clientToAdd));
       console.log(clientToAdd.login+' '+clientToAdd.password+' '+clientToAdd.name+' '+clientToAdd.lastName+' '+clientToAdd.postalCode.toString()+' '+clientToAdd.town+' '+clientToAdd.email+' '+clientToAdd.phone.toString()+' '+clientToAdd.civil);
-      console.log("test hello");
-      this.authentificationService.getHello("HELLO");
-      console.log("test hello ok ?");
       this.authentificationService.postForm(clientToAdd.login, clientToAdd.password, clientToAdd.name, clientToAdd.lastName, clientToAdd.postalCode, clientToAdd.town, clientToAdd.email, clientToAdd.phone, clientToAdd.civil).subscribe();
-      //this.authentificationService.postForm(clientToAdd.login, clientToAdd.password, clientToAdd.name, clientToAdd.lastName, clientToAdd.postalCode.toString(), clientToAdd.town, clientToAdd.email, clientToAdd.phone.toString(), clientToAdd.civil);
       console.log("ok c'est push");
-
       alert("Client créé");
     }
 
-
-
-
   ngOnInit(): void {
-  }
-
-  HELLO(){
-    console.log("BONJOUR ???");
-    //alert("BONJOUR ?");
-    this.authentificationService.getHello("HELLO").subscribe(); 
-    //alert("BONJOUR !");
-    return this.http.get<Client>("/api/hello/" + "HELLO");
-
   }
 
 

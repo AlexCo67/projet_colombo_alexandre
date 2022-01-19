@@ -41,14 +41,18 @@ export class DetailClientComponent implements OnInit {
     c.login=this.formLogin.get("login")?.value;
     c.password=this.formLogin.get("password")?.value;
     // A MODIFIER
-    this.store.dispatch(new AddClient(c));
 
-    this.authentificationService.getHello("HELLO");
+
 
 
     this.authentificationService.postLogin(this.formLogin.get("login")?.value, this.formLogin.get("password")?.value).subscribe(
       ()=>{
         this.client$ = this.authentificationService.getLogin(this.formLogin.get("login")?.value);
+        this.store.dispatch(new AddClient(c));
+      },
+      (error)=>{
+        alert("Erreur de connexion, login ou mot de passe inconnu");
+        console.log("erreur" + error);
       }
     );
   }
